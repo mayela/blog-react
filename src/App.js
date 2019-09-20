@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Header from "./components/Header";
+import Content from "./components/Content";
+import Footer from "./components/Footer";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    text: "Hello world!!"
+  };
+  render() {
+    const posts = [
+      { title: "title 1", content: "content 1" },
+      { title: "title 2", content: "content 2" },
+      { title: "title 3", content: "content 2" }
+    ];
+    console.log(this.props);
+    return (
+      <div>
+        <Header name="Maricela" />
+        <Content posts={posts} />
+        <Footer email="mmiranda@nearsoft.com" />
+      </div>
+    );
+  }
 }
 
 export default App;
