@@ -6,49 +6,34 @@ import Footer from "./components/Footer";
 
 class App extends React.Component {
   state = {
-    text: "Hello world!!"
+    text: "Hello world!!",
+    posts: [],
   };
 
-  // PROMESAS
-  fetchData() {
+  async function fetchPosts() {
     const url = "https://jsonplaceholder.typicode.com/posts";
     const options = { method: "GET" };
-    fetch(url, options)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(data) {
-        console.log(data);
-      })
-      .catch(function(err) {
-        console.log(err);
-      });
+    const response = await fetch(url, options);
+    const data = await response.json();
+    return data;
   }
 
-  // Async - await
-  async asyncFetchData() {
-    // const url = "https://jsonplaceholder.typicode.com/posts";
-    // const options = { method: "GET" };
-    // const response = await fetch(url, options);
-    // const data = await response.json();
-    // console.log(data);
-    // PROMISE
-    // 1 - PENDING
-    // 2 - FULLFILED - RESOLVED - OK
-    // 3 - REJECTED - FAIL
+  async setPosts() {
+    const posts = await asyncFetchPosts;
+    this.setState({
+      posts: posts,
+    });
   }
 
-  // CUANDO EL COMPONENT YA ESTA MONTADO
-  componentDidMount() {
-    this.asyncFetchData();
+  componenDidMount() {
+    this.setPosts();
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <Header name="Maricela" />
-        <Content posts={[]} value="1" date={this.props.date} />
+        <Content posts={this.state.posts} />
         <Footer email="mmiranda@nearsoft.com" />
       </div>
     );

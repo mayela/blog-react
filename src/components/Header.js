@@ -6,7 +6,6 @@ function Header(props) {
     <header>
       <h1 className="header-title">
         Bienvenido al blog personal de {props.name}
-        {new Date().toISOString()}
       </h1>
     </header>
   );
