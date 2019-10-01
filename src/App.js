@@ -18,14 +18,13 @@ class App extends React.Component {
     return data;
   }
 
-  async setPosts() {
-    const posts = await asyncFetchPosts;
+  async function setPosts() {
+    const resultado = await fetchPosts()
     this.setState({
-      posts: posts,
-    });
-  }
-
-  componenDidMount() {
+      posts: resultado
+    })
+}
+  componentDidMount() {
     this.setPosts();
   }
 
