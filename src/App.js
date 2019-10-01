@@ -10,20 +10,20 @@ class App extends React.Component {
     posts: [],
   };
 
-  fetchPosts = async function() {
+  async fetchPosts() {
     const url = "https://jsonplaceholder.typicode.com/posts";
     const options = { method: "GET" };
     const response = await fetch(url, options);
     const data = await response.json();
     return data;
-  };
+  }
 
-  setPosts = async function() {
-    const resultado = await fetchPosts();
+  async setPosts() {
+    const resultado = await this.fetchPosts();
     this.setState({
       posts: resultado,
     });
-  };
+  }
   componentDidMount() {
     this.setPosts();
   }
